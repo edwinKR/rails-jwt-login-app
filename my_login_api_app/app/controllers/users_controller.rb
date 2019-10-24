@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # POST /signup
   def signup
-    @user = User.new(user_params)
+    @user = User.create(user_params)
     
     if @user.save
       response = { message: 'User created successfully!'}
@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:users).permit(
+    puts "------"
+    puts params.inspect
+    params.permit(
       :name,
       :email,
       :password
